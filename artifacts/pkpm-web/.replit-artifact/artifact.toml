@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Pusat Kajian Pemberdayaan Masyarakat"
+description = "Website pusat informasi untuk Pusat Kajian Pemberdayaan Masyarakat, UMKM, dan Ekonomi Kreatif Polinema. Menampilkan berita, artikel kegiatan dengan foto dan video, profil lembaga, riset dan publikasi, galeri, serta informasi mitra kerja sama."
+version = "1.0.0"
+id = "artifacts/pkpm-web"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19276
+
+[services.development]
+run = "pnpm --filter @workspace/pkpm-web run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pkpm-web", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/pkpm-web/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19276"
+BASE_PATH = "/"

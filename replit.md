@@ -1,10 +1,11 @@
-# [Project name]
+# Pusat Kajian Pemberdayaan Masyarakat Polinema
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Website pusat informasi untuk Pusat Kajian Pemberdayaan Masyarakat, UMKM, dan Ekonomi Kreatif Polinema. Portal berita dan informasi riset dengan dukungan foto dan video di setiap artikel.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/pkpm-web run dev` — run the frontend (served at `/`)
+- `pnpm --filter @workspace/api-server run dev` — run the API server (port 8080, served at `/api`)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
@@ -14,31 +15,53 @@ _Replace the heading above with the project's name, and this line with one sente
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
+- Frontend: React + Vite, Tailwind CSS, wouter, TanStack Query, framer-motion
 - API: Express 5
 - DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
+- Validation: Zod (v3), `drizzle-zod`
 - API codegen: Orval (from OpenAPI spec)
 - Build: esbuild (CJS bundle)
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/pkpm-web/src/pages/` — all page components (Home, Profile, Berita, Program, UMKM, Publikasi, Mitra, Galeri, Kontak)
+- `artifacts/api-server/src/routes/` — API route files (articles, gallery, programs, umkm, publications, partners, stats)
+- `lib/db/src/schema/` — Drizzle table definitions
+- `lib/api-spec/openapi.yaml` — OpenAPI contract (source of truth for all API shapes)
+- `lib/api-client-react/src/generated/` — auto-generated React Query hooks (do not edit)
+- `lib/api-zod/src/generated/` — auto-generated Zod schemas for server validation (do not edit)
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Date objects from Drizzle are serialized to ISO strings via `JSON.parse(JSON.stringify(data))` before Zod validation — this is because OpenAPI spec defines timestamps as `string` type, which generates `zod.string()` validators, but Drizzle returns JS Date objects.
+- Integer fields in OpenAPI spec use `type: number` (not `type: integer`) to avoid Orval generating `zod.int()` which is Zod v4 syntax not available in Zod v3.
+- All article content supports HTML body, embedded image URLs, and video URLs (YouTube iframe or HTML5 video).
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- **Homepage** (`/`) — hero with featured articles, stats counter, recent news, programs
+- **Profil** (`/profil`) — about the institution, vision/mission, focus areas
+- **Berita** (`/berita`, `/berita/:id`) — news/articles listing with category filter and full article detail with photo/video support
+- **Program** (`/program`, `/program/:id`) — programs and activities with status badges
+- **UMKM** (`/umkm`, `/umkm/:id`) — SME partner listings
+- **Publikasi** (`/publikasi`, `/publikasi/:id`) — research publications
+- **Mitra** (`/mitra`) — institutional partners grid
+- **Galeri** (`/galeri`) — photo and video gallery with type filter
+- **Kontak** (`/kontak`) — contact information and form
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Blue color scheme (deep institutional blue with gold accent)
+- Portal-style design similar to suaragong.com
+- Articles must support embedded photos and videos
+- No emojis in UI
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- After OpenAPI spec changes, always run codegen: `pnpm --filter @workspace/api-spec run codegen`
+- After DB schema changes, run: `pnpm --filter @workspace/db run push`
+- Do NOT use `type: integer` in openapi.yaml — use `type: number` instead (Zod v3 compatibility)
+- Always use `toJson()` helper in route handlers before Zod `.parse()` to handle Date serialization
 
 ## Pointers
 
