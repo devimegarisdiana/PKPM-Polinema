@@ -1,3 +1,5 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import express, { type Express } from "express";
 import cors from "cors";
 import session from "express-session";
@@ -6,6 +8,7 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 app.use(
   pinoHttp({
@@ -44,5 +47,18 @@ app.use(
 );
 
 app.use("/api", router);
+
+// In production, serve the built frontend from the 'public' directory that
+// sits next to this compiled server file (dist/index.mjs → dist/public/).
+// The build-deploy script copies the Vite output there before packaging.
+if (process.env["NODE_ENV"] === "production") {
+  const publicDir = path.resolve(__dirname, "public");
+  app.use(express.static(publicDir));
+  // Fallback: serve index.html for all non-API routes (SPA client-side routing).
+  // Express 5 requires path-to-regexp v8 syntax; bare "*" is rejected — use "/{*splat}".
+  app.get("/{*splat}", (_req, res) => {
+    res.sendFile(path.join(publicDir, "index.html"));
+  });
+}
 
 export default app;

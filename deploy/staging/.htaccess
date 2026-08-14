@@ -1,0 +1,19 @@
+# =============================================================================
+# Apache / Phusion Passenger – PKPM Node.js App
+# Place this file as .htaccess in the app root directory on cPanel
+# (the same directory that contains app.js and dist/)
+# =============================================================================
+
+# Tell Passenger which Node.js binary to use and where the app lives
+PassengerNodejs /usr/local/bin/node
+PassengerStartupFile app.js
+PassengerAppType node
+
+# Pass the following environment variables to Node.js
+SetEnv NODE_ENV production
+# PORT is managed by Passenger – do not hardcode it here
+
+# Force HTTPS (enable after SSL is configured)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
