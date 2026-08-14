@@ -14,6 +14,7 @@ import adminUmkmRouter from "./admin-umkm";
 import adminPublicationsRouter from "./admin-publications";
 import adminPartnersRouter from "./admin-partners";
 import adminGalleryRouter from "./admin-gallery";
+import adminUploadRouter from "./admin-upload";
 
 const router: IRouter = Router();
 
@@ -35,5 +36,6 @@ router.use(adminUmkmRouter);
 router.use(adminPublicationsRouter);
 router.use(adminPartnersRouter);
 router.use(adminGalleryRouter);
+router.use(adminUploadRouter);
 
 export default router;

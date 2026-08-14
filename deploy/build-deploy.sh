@@ -65,6 +65,13 @@ cp "$DEPLOY_DIR/package-deploy.json" "$STAGING/package.json"
 cp "$DEPLOY_DIR/cpanel.htaccess"  "$STAGING/.htaccess"
 cp "$DEPLOY_DIR/env.example"      "$STAGING/.env.example"
 
+# NOTE: The uploads/ folder (user-uploaded images and PDFs) is stored at the
+# application root on the server and must NOT be overwritten during re-deploy.
+# After extracting the ZIP on cPanel, do NOT replace the existing uploads/ dir.
+# If this is a first-time deploy, create an empty uploads/ placeholder so the
+# server can write files there immediately.
+mkdir -p "$STAGING/uploads" && touch "$STAGING/uploads/.keep"
+
 # ── 5. Create ZIP ─────────────────────────────────────────────────────────────
 echo ""
 echo "▶ Creating ZIP archive..."

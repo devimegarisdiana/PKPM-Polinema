@@ -5,6 +5,7 @@ import cors from "cors";
 import session from "express-session";
 import pinoHttp from "pino-http";
 import router from "./routes";
+import { UPLOADS_DIR } from "./routes/admin-upload";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
@@ -54,6 +55,10 @@ app.use(
 );
 
 app.use("/api", router);
+
+// Serve uploaded files (images, PDFs) at /uploads/<filename>.
+// The directory is created automatically by the upload route on first use.
+app.use("/uploads", express.static(UPLOADS_DIR));
 
 // In production, serve the built frontend from the 'public' directory that
 // sits next to this compiled server file (dist/index.mjs → dist/public/).

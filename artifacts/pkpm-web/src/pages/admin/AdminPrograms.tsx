@@ -4,6 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import AdminTable from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { adminFetch } from "@/hooks/useAdmin";
 
 type Program = { id: number; title: string; description: string; category: string; status: string; startDate?: string | null; endDate?: string | null; imageUrl?: string | null };
@@ -77,7 +78,11 @@ export default function AdminPrograms() {
             <Field label="Tanggal Mulai"><input type="date" className={inp} value={form.startDate} onChange={F("startDate")} /></Field>
             <Field label="Tanggal Selesai"><input type="date" className={inp} value={form.endDate} onChange={F("endDate")} /></Field>
           </div>
-          <Field label="URL Gambar"><input className={inp} value={form.imageUrl} onChange={F("imageUrl")} placeholder="https://..." /></Field>
+          <ImageUpload
+            label="Gambar Program"
+            value={form.imageUrl}
+            onChange={(url) => setForm(p => ({ ...p, imageUrl: url }))}
+          />
           {error && <p className="text-red-600 text-sm bg-red-50 rounded px-3 py-2">{error}</p>}
           <div className="flex gap-3 pt-2">
             <button type="submit" disabled={saving} className="flex-1 bg-[#0a2558] text-white rounded-lg py-2.5 text-sm font-medium hover:bg-[#0d2f6b] disabled:opacity-60">{saving ? "Menyimpan..." : "Simpan"}</button>

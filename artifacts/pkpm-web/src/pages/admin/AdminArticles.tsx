@@ -4,6 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import AdminTable from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { adminFetch } from "@/hooks/useAdmin";
 
 type Article = {
@@ -116,7 +117,11 @@ export default function AdminArticles() {
           </div>
           <Field label="Ringkasan"><textarea className={inp + " h-20"} value={form.excerpt ?? ""} onChange={F("excerpt")} /></Field>
           <Field label="Isi Artikel *"><textarea className={inp + " h-40"} value={form.content} onChange={F("content")} required /></Field>
-          <Field label="URL Gambar Utama"><input className={inp} value={form.imageUrl ?? ""} onChange={F("imageUrl")} placeholder="https://..." /></Field>
+          <ImageUpload
+            label="Gambar Utama"
+            value={form.imageUrl ?? ""}
+            onChange={(url) => setForm(p => ({ ...p, imageUrl: url }))}
+          />
           <Field label="URL Video (YouTube atau MP4)"><input className={inp} value={form.videoUrl ?? ""} onChange={F("videoUrl")} placeholder="https://youtube.com/..." /></Field>
           <div className="grid grid-cols-2 gap-3">
             <Field label="Tanggal Terbit">

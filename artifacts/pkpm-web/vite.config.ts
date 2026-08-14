@@ -72,6 +72,13 @@ export default defineConfig({
     fs: {
       strict: true,
     },
+    proxy: {
+      // Forward /uploads requests to the API server so dev and prod work the same way.
+      '/uploads': {
+        target: `http://localhost:${process.env.API_PORT ?? 8080}`,
+        changeOrigin: true,
+      },
+    },
   },
   preview: {
     port,

@@ -4,6 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import AdminTable from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { adminFetch } from "@/hooks/useAdmin";
 
 type Partner = { id: number; name: string; type: string; description?: string | null; logoUrl?: string | null; website?: string | null; location?: string | null };
@@ -72,7 +73,11 @@ export default function AdminPartners() {
             <Field label="Lokasi"><input className={inp} value={form.location} onChange={F("location")} /></Field>
           </div>
           <Field label="Website"><input className={inp} value={form.website} onChange={F("website")} placeholder="https://..." /></Field>
-          <Field label="URL Logo"><input className={inp} value={form.logoUrl} onChange={F("logoUrl")} placeholder="https://..." /></Field>
+          <ImageUpload
+            label="Logo Mitra"
+            value={form.logoUrl}
+            onChange={(url) => setForm(p => ({ ...p, logoUrl: url }))}
+          />
           {error && <p className="text-red-600 text-sm bg-red-50 rounded px-3 py-2">{error}</p>}
           <div className="flex gap-3 pt-2">
             <button type="submit" disabled={saving} className="flex-1 bg-[#0a2558] text-white rounded-lg py-2.5 text-sm font-medium hover:bg-[#0d2f6b] disabled:opacity-60">{saving ? "Menyimpan..." : "Simpan"}</button>

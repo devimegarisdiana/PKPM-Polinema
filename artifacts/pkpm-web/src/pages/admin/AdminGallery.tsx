@@ -4,6 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import AdminTable from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { adminFetch } from "@/hooks/useAdmin";
 
 type GalleryItem = { id: number; title: string; type: string; url: string; category?: string | null; description?: string | null; thumbnailUrl?: string | null };
@@ -73,8 +74,24 @@ export default function AdminGallery() {
             </Field>
             <Field label="Kategori"><input className={inp} value={form.category} onChange={F("category")} placeholder="Kegiatan, Pelatihan, dst." /></Field>
           </div>
-          <Field label="URL Foto / Video *"><input className={inp} value={form.url} onChange={F("url")} required placeholder="https://..." /></Field>
-          <Field label="URL Thumbnail"><input className={inp} value={form.thumbnailUrl} onChange={F("thumbnailUrl")} placeholder="https://... (opsional untuk video)" /></Field>
+          {form.type === "photo" ? (
+            <ImageUpload
+              label="Foto *"
+              value={form.url}
+              onChange={(url) => setForm(p => ({ ...p, url }))}
+              placeholder="https://... atau upload foto"
+            />
+          ) : (
+            <Field label="URL Video *">
+              <input className={inp} value={form.url} onChange={F("url")} required placeholder="https://youtube.com/... atau https://..." />
+            </Field>
+          )}
+          <ImageUpload
+            label="Thumbnail"
+            value={form.thumbnailUrl}
+            onChange={(url) => setForm(p => ({ ...p, thumbnailUrl: url }))}
+            placeholder="https://... (opsional untuk video)"
+          />
           {error && <p className="text-red-600 text-sm bg-red-50 rounded px-3 py-2">{error}</p>}
           <div className="flex gap-3 pt-2">
             <button type="submit" disabled={saving} className="flex-1 bg-[#0a2558] text-white rounded-lg py-2.5 text-sm font-medium hover:bg-[#0d2f6b] disabled:opacity-60">{saving ? "Menyimpan..." : "Simpan"}</button>

@@ -4,6 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import AdminTable from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { adminFetch } from "@/hooks/useAdmin";
 
 type Publication = { id: number; title: string; authors: string; type: string; publishedYear: number; journalName?: string | null; doiUrl?: string | null; pdfUrl?: string | null; abstract?: string | null; coverImageUrl?: string | null };
@@ -75,7 +76,19 @@ export default function AdminPublications() {
           </div>
           <Field label="Nama Jurnal / Prosiding"><input className={inp} value={form.journalName} onChange={F("journalName")} /></Field>
           <Field label="DOI / URL Artikel"><input className={inp} value={form.doiUrl} onChange={F("doiUrl")} placeholder="https://doi.org/..." /></Field>
-          <Field label="URL PDF"><input className={inp} value={form.pdfUrl} onChange={F("pdfUrl")} placeholder="https://..." /></Field>
+          <ImageUpload
+            label="Cover / Sampul"
+            value={form.coverImageUrl}
+            onChange={(url) => setForm(p => ({ ...p, coverImageUrl: url }))}
+          />
+          <ImageUpload
+            label="File PDF"
+            value={form.pdfUrl}
+            onChange={(url) => setForm(p => ({ ...p, pdfUrl: url }))}
+            accept=".pdf,application/pdf"
+            placeholder="https://... atau upload PDF"
+            type="file"
+          />
           {error && <p className="text-red-600 text-sm bg-red-50 rounded px-3 py-2">{error}</p>}
           <div className="flex gap-3 pt-2">
             <button type="submit" disabled={saving} className="flex-1 bg-[#0a2558] text-white rounded-lg py-2.5 text-sm font-medium hover:bg-[#0d2f6b] disabled:opacity-60">{saving ? "Menyimpan..." : "Simpan"}</button>
