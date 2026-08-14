@@ -1,0 +1,9 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "zH3kA0mfEFWjnI3ToHCeD"
+uri = "file://pkpm-cpanel-deploy.zip"
+type = "unspecified"
+title = "pkpm-cpanel-deploy.zip"
+description = "Paket deployment siap upload ke cPanel Jagoan Hosting (740KB)"
