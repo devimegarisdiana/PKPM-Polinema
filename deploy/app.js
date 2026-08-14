@@ -29,7 +29,7 @@ if (!process.env["PORT"]) {
 }
 
 // ── 4. Boot the server ────────────────────────────────────────────────────
-import("./dist/index.mjs").catch((err) => {
+import("./index.mjs").catch((err) => {
   console.error("[app.js] Failed to start server:", err);
   process.exit(1);
 });
