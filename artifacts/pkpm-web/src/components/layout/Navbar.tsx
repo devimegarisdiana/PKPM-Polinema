@@ -26,9 +26,11 @@ export function Navbar() {
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
-              <div className="bg-primary text-primary-foreground p-2 rounded-lg">
-                <BookOpen className="h-6 w-6" />
-              </div>
+              <img
+                src="/logo-polinema.jpg"
+                alt="Logo Polinema"
+                className="h-12 w-12 object-contain"
+              />
               <div>
                 <h1 className="font-bold text-sm md:text-base leading-tight tracking-tight text-primary">
                   Pusat Kajian Pemberdayaan Masyarakat

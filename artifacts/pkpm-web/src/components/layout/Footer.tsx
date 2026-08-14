@@ -9,9 +9,11 @@ export function Footer() {
           
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-white text-primary p-2 rounded-lg">
-                <BookOpen className="h-6 w-6" />
-              </div>
+              <img
+                src="/logo-polinema.jpg"
+                alt="Logo Polinema"
+                className="h-14 w-14 object-contain"
+              />
               <div>
                 <h2 className="font-bold text-base leading-snug tracking-tight text-white">
                   Pusat Kajian Pemberdayaan Masyarakat/<br/>UMKM/Ekonomi Kreatif
