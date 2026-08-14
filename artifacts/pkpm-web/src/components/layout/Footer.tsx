@@ -13,7 +13,9 @@ export function Footer() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div>
-                <h2 className="font-bold text-xl leading-tight tracking-tight text-white">PKPM Polinema</h2>
+                <h2 className="font-bold text-base leading-snug tracking-tight text-white">
+                  Pusat Kajian Pemberdayaan Masyarakat/<br/>UMKM/Ekonomi Kreatif
+                </h2>
               </div>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed max-w-sm">

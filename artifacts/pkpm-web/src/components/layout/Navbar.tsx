@@ -30,9 +30,11 @@ export function Navbar() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div>
-                <h1 className="font-bold text-lg leading-tight tracking-tight text-primary">PKPM Polinema</h1>
-                <p className="text-[10px] md:text-xs text-muted-foreground font-medium hidden sm:block">
+                <h1 className="font-bold text-sm md:text-base leading-tight tracking-tight text-primary">
                   Pusat Kajian Pemberdayaan Masyarakat
+                </h1>
+                <p className="text-[10px] md:text-xs text-muted-foreground font-medium hidden sm:block">
+                  UMKM &amp; Ekonomi Kreatif Polinema
                 </p>
               </div>
             </Link>
