@@ -13,7 +13,7 @@ PassengerAppType node
 SetEnv NODE_ENV production
 # PORT is managed by Passenger – do not hardcode it here
 
-# Force HTTPS (enable after SSL is configured)
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS redirect
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

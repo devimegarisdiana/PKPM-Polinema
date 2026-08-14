@@ -10,6 +10,13 @@ import { logger } from "./lib/logger";
 const app: Express = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Trust the local reverse proxy (Phusion Passenger / Nginx / etc.) so that
+// Express correctly reads X-Forwarded-Proto and treats HTTPS requests as
+// secure. Required for session cookies with `secure: true` to be sent.
+if (process.env["NODE_ENV"] === "production") {
+  app.set("trust proxy", 1);
+}
+
 app.use(
   pinoHttp({
     logger,
@@ -40,7 +47,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false, // set true in production behind HTTPS proxy
+      secure: process.env["NODE_ENV"] === "production", // true in production behind HTTPS proxy
       maxAge: 8 * 60 * 60 * 1000, // 8 hours
     },
   }),
