@@ -7,7 +7,7 @@ import { BusinessExamples } from "@/components/ReferenceExamples";
 import { HomePhotoExamples } from "@/components/HomePhotoExamples";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
-const heroBg = `${import.meta.env.BASE_URL}images/examples/workshop-example.jpg`;
+const heroBg = `${import.meta.env.BASE_URL}images/research/do-it-board-game.jpg`;
 
 export default function Home() {
   const { data: stats } = useGetStats();
@@ -28,6 +28,10 @@ export default function Home() {
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${heroBg})`, backgroundPosition: 'center 30%' }}
         />
+        <p className="absolute top-5 right-4 md:right-6 z-20 rounded-lg bg-primary/80 px-3 py-2 text-xs text-white/90 max-w-[17rem]">
+          Dokumentasi hilirisasi riset<br />
+          <span className="font-semibold">Board Game DO IT — Start a Bussiness</span>
+        </p>
         
         <div className="container mx-auto px-4 md:px-6 relative z-20 pt-20">
           <div className="max-w-3xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
