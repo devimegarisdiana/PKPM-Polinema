@@ -4,9 +4,10 @@ import { ArrowRight, BookOpen, GraduationCap, Users, LayoutDashboard, Calendar, 
 import { Button } from "@/components/ui/button";
 import { CollaborationPaths, ConsultationCallout } from "@/components/ResearchContent";
 import { BusinessExamples } from "@/components/ReferenceExamples";
+import { HomePhotoExamples } from "@/components/HomePhotoExamples";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
-const heroBg = "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80";
+const heroBg = `${import.meta.env.BASE_URL}images/examples/workshop-example.jpg`;
 
 export default function Home() {
   const { data: stats } = useGetStats();
@@ -22,7 +23,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[600px] md:h-[700px] flex items-center">
-        <div className="absolute inset-0 bg-primary/90 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/35 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${heroBg})`, backgroundPosition: 'center 30%' }}
@@ -97,6 +98,7 @@ export default function Home() {
       </section>
 
       {/* Focus Areas */}
+      <HomePhotoExamples />
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
