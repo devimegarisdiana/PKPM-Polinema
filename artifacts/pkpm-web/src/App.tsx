@@ -28,6 +28,7 @@ import PublicationDetail from '@/pages/publications/PublicationDetail';
 import PartnerList from '@/pages/partners/PartnerList';
 import GalleryList from '@/pages/gallery/GalleryList';
 import Contact from '@/pages/Contact';
+import Impact from '@/pages/Impact';
 
 // Admin pages
 import AdminLogin from '@/pages/admin/AdminLogin';
@@ -86,10 +87,13 @@ function PublicRouter() {
           <Route path="/umkm" component={UmkmList} />
           <Route path="/umkm/:id" component={UmkmDetail} />
           <Route path="/publikasi" component={PublicationList} />
+          <Route path="/luaran" component={PublicationList} />
           <Route path="/publikasi/:id" component={PublicationDetail} />
           <Route path="/mitra" component={PartnerList} />
           <Route path="/galeri" component={GalleryList} />
           <Route path="/kontak" component={Contact} />
+          <Route path="/konsultasi" component={Contact} />
+          <Route path="/dampak" component={Impact} />
           <Route component={NotFound} />
         </Switch>
       </RoutedErrorBoundary>

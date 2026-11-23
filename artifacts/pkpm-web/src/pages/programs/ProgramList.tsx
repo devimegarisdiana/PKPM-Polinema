@@ -5,6 +5,7 @@ import { id as idLocale } from "date-fns/locale";
 import { Target, ArrowRight, Calendar } from "lucide-react";
 const programImg = "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80";
 import { Button } from "@/components/ui/button";
+import { CollaborationPaths } from "@/components/ResearchContent";
 
 export default function ProgramList() {
   const { data: programs, isLoading } = useListPrograms();
@@ -33,15 +34,33 @@ export default function ProgramList() {
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-extrabold mb-4">Program & Kegiatan</h1>
+            <h1 className="text-4xl font-extrabold mb-4">Temukan jalur kolaborasi yang sesuai dengan kebutuhanmu.</h1>
             <p className="text-primary-foreground/80 text-lg">
-              Aksi nyata kami dalam pemberdayaan masyarakat, pelatihan UMKM, dan pengembangan industri kreatif.
+              Mulai dari persoalan usaha, gagasan riset, fasilitas TEFA, atau minat akademik. Setiap jalur membuka kesempatan untuk menghasilkan solusi yang dapat digunakan.
             </p>
           </div>
         </div>
       </section>
 
+      <CollaborationPaths />
+      <section className="container mx-auto px-4 md:px-6 pb-12">
+        <h2 className="text-2xl font-extrabold mb-4">Satu masalah, banyak kontribusi.</h2>
+        <p className="text-sm font-bold text-primary mb-3">SIMULASI PROGRAM — BUKAN KEGIATAN AKTUAL</p>
+        <blockquote className="bg-white border-l-4 border-secondary p-6 rounded-r-xl mb-6">“Produksi meningkat, tetapi pemilik usaha belum mengetahui biaya setiap produk dan kemasan belum konsisten.”</blockquote>
+        <div className="overflow-x-auto"><table className="w-full text-left bg-white rounded-xl">
+          <thead><tr><th className="p-4">Kontributor</th><th className="p-4">Kontribusi yang dapat diberikan</th></tr></thead>
+          <tbody>{[
+            ["Akuntansi", "Perhitungan HPP, pencatatan, dan analisis kelayakan"],
+            ["Teknik Mesin", "Perbaikan alat, kapasitas, dan efisiensi produksi"],
+            ["Teknologi Informasi", "Dashboard sederhana dan katalog digital"],
+            ["Administrasi Niaga", "Merek, kemasan, pemasaran, dan model bisnis"],
+            ["Mahasiswa", "Asisten riset, PKL, TA, atau skripsi sesuai persetujuan prodi"],
+          ].map(([name, contribution]) => <tr key={name} className="border-t"><th className="p-4 font-semibold">{name}</th><td className="p-4 text-gray-600">{contribution}</td></tr>)}</tbody>
+        </table></div>
+      </section>
       <section className="py-16 container mx-auto px-4 md:px-6">
+        <h2 className="text-2xl font-extrabold mb-6">Agenda & kegiatan terdaftar</h2>
+        {!isLoading && programs?.length === 0 && <p className="text-gray-600">Belum ada agenda kegiatan yang dipublikasikan.</p>}
         {isLoading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1,2,3,4].map(i => <div key={i} className="h-80 bg-white rounded-2xl animate-pulse"></div>)}

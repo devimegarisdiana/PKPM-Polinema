@@ -4,6 +4,7 @@ import { FileText, Download, ExternalLink, Search, Filter, BookOpen } from "luci
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { OutputExamples, PublicationExamples } from "@/components/ReferenceExamples";
 
 export default function PublicationList() {
   const { data: publications, isLoading } = useListPublications();
@@ -29,14 +30,16 @@ export default function PublicationList() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <section className="bg-primary py-16 text-white">
         <div className="container mx-auto px-4 md:px-6">
-          <h1 className="text-4xl font-extrabold mb-4">Publikasi Riset</h1>
+          <h1 className="text-4xl font-extrabold mb-4">Kabar, Publikasi & Luaran</h1>
           <p className="text-primary-foreground/80 text-lg max-w-2xl">
-            Hasil penelitian terapan, kajian strategis, dan publikasi ilmiah yang didedikasikan untuk kemajuan masyarakat.
+            Ikuti gagasan, kegiatan, dan pengetahuan yang kami bagikan. Temukan kabar program, publikasi media, artikel ilmiah, artikel populer, panduan, dan agenda yang mempertemukan kampus dengan masyarakat.
           </p>
         </div>
       </section>
 
       <section className="py-12 container mx-auto px-4 md:px-6">
+        <h2 className="text-2xl font-extrabold mb-6">Publikasi terdaftar</h2>
+        <div className="flex flex-wrap gap-5 mb-6 font-semibold text-primary"><Link href="/berita">Berita & kegiatan →</Link><a href="#luaran">Katalog luaran →</a></div>
         <div className="flex flex-col md:flex-row justify-between gap-6 mb-10 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
           <div className="flex flex-wrap gap-2">
             {types.map((t) => (
@@ -123,6 +126,8 @@ export default function PublicationList() {
           </div>
         )}
       </section>
+      <PublicationExamples />
+      <OutputExamples />
     </div>
   );
 }

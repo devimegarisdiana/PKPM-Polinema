@@ -11,9 +11,9 @@ export default function GalleryList() {
     <div className="flex flex-col min-h-screen bg-gray-50 pb-20">
       <section className="bg-primary py-16 text-white text-center">
         <div className="container mx-auto px-4 md:px-6">
-          <h1 className="text-4xl font-extrabold mb-4">Galeri Kegiatan</h1>
+          <h1 className="text-4xl font-extrabold mb-4">Melihat kolaborasi dari dekat.</h1>
           <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
-            Dokumentasi visual dari berbagai program, pelatihan, dan aktivitas pemberdayaan masyarakat.
+            Dokumentasi kunjungan, diskusi, pengujian, pendampingan, dan pembelajaran bersama mitra.
           </p>
         </div>
       </section>

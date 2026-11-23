@@ -1,1 +1,2 @@
 - [MySQL migration](mysql-migration.md) — app migrated from PostgreSQL to MySQL (MariaDB on Jagoan Hosting); avoid PostgreSQL-specific SQL syntax like `::int` cast.
+- [Acuan informasi portal](reference-content.md) — pengguna menetapkan situs referensi untuk isi; data contoh prototype harus dibedakan dari informasi resmi.

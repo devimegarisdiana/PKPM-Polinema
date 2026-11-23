@@ -2,6 +2,8 @@ import { useListFeaturedArticles, useListRecentArticles, useGetStats, useListPro
 import { Link } from "wouter";
 import { ArrowRight, BookOpen, GraduationCap, Users, LayoutDashboard, Calendar, ChevronRight, Activity, Handshake, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CollaborationPaths, ConsultationCallout } from "@/components/ResearchContent";
+import { BusinessExamples } from "@/components/ReferenceExamples";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
 const heroBg = "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80";
@@ -37,21 +39,20 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-              Katalisator Inovasi <br/>
-              <span className="text-secondary">Ekonomi Lokal</span>
+              Masalah nyata, pengetahuan terapan, <br/>
+              <span className="text-secondary">perubahan yang terasa.</span>
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/80 leading-relaxed max-w-2xl font-medium">
-              Pusat Kajian Pemberdayaan Masyarakat, UMKM, dan Ekonomi Kreatif. 
-              Membangun kemandirian masyarakat melalui riset terapan dan pendampingan berkelanjutan.
+              Temukan ruang kolaborasi yang mempertemukan kebutuhan masyarakat dan UMKM dengan kepakaran dosen, fasilitas TEFA, mitra strategis, dan talenta mahasiswa lintas jurusan.
             </p>
             
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold h-12 px-8 text-base">
-                <Link href="/program">Jelajahi Program</Link>
+                <Link href="/kontak">Ceritakan kebutuhan usaha Anda</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="bg-transparent border-white text-white hover:bg-white/10 h-12 px-8 text-base font-semibold">
-                <Link href="/profil">Pelajari Lebih Lanjut</Link>
+                <Link href="/program">Jelajahi program</Link>
               </Button>
             </div>
           </div>
@@ -68,28 +69,28 @@ export default function Home() {
             <div className="p-3 bg-blue-50 rounded-full text-primary mb-2">
               <Users className="h-6 w-6" />
             </div>
-            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalUmkm || '-'}</h3>
+            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalUmkm ?? '—'}</h3>
             <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">UMKM Binaan</p>
           </div>
           <div className="flex flex-col items-center text-center space-y-2">
             <div className="p-3 bg-blue-50 rounded-full text-primary mb-2">
               <Activity className="h-6 w-6" />
             </div>
-            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalPrograms || '-'}</h3>
-            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Program Berjalan</p>
+            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalPrograms ?? '—'}</h3>
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Program Terdaftar</p>
           </div>
           <div className="flex flex-col items-center text-center space-y-2">
             <div className="p-3 bg-blue-50 rounded-full text-primary mb-2">
               <BookOpen className="h-6 w-6" />
             </div>
-            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalPublications || '-'}</h3>
+            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalPublications ?? '—'}</h3>
             <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Publikasi Riset</p>
           </div>
           <div className="flex flex-col items-center text-center space-y-2">
             <div className="p-3 bg-blue-50 rounded-full text-primary mb-2">
               <Handshake className="h-6 w-6" />
             </div>
-            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalPartners || '-'}</h3>
+            <h3 className="text-3xl font-extrabold text-gray-900">{stats?.totalPartners ?? '—'}</h3>
             <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Mitra Kerja Sama</p>
           </div>
         </div>
@@ -99,42 +100,62 @@ export default function Home() {
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-sm font-bold text-primary uppercase tracking-widest">Fokus Kajian</h2>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">Tiga Pilar Penguatan Lokal</h3>
+            <h2 className="text-sm font-bold text-primary uppercase tracking-widest">Ruang untuk bertumbuh</h2>
+            <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">Pengetahuanmu dapat bekerja untuk persoalan yang nyata.</h3>
             <p className="text-gray-600 text-lg">
-              Kami memfokuskan sumber daya pada area strategis yang memberikan dampak paling signifikan bagi perekonomian akar rumput.
+              Setiap orang dapat mengambil peran. Pilih jalur yang paling sesuai dan temukan kesempatan untuk belajar, meneliti, mengembangkan solusi, atau memperluas kolaborasi.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
               <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
                 <Users className="h-7 w-7" />
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900">Pemberdayaan Masyarakat</h4>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Untuk UMKM</h4>
               <p className="text-gray-600 leading-relaxed">
-                Meningkatkan kapasitas sosial dan ekonomi komunitas melalui pelatihan dan pendampingan terstruktur.
+                Ceritakan tantangan usaha Anda dan temukan kepakaran yang relevan untuk mendampinginya.
               </p>
+              <Link href="/kontak" className="inline-block mt-4 font-bold text-primary">Sampaikan kebutuhan →</Link>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
               <div className="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
                 <Target className="h-7 w-7" />
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900">Pengembangan UMKM</h4>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Untuk dosen</h4>
               <p className="text-gray-600 leading-relaxed">
-                Akselerasi bisnis mikro dan kecil melalui adopsi teknologi, manajemen kualitas, dan perluasan akses pasar.
+                Temukan persoalan lapangan yang dapat dikembangkan menjadi riset terapan dan solusi bagi mitra.
               </p>
+              <Link href="/program" className="inline-block mt-4 font-bold text-primary">Jelajahi agenda riset →</Link>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
               <div className="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 mb-6 group-hover:scale-110 transition-transform">
                 <LayoutDashboard className="h-7 w-7" />
               </div>
-              <h4 className="text-xl font-bold mb-3 text-gray-900">Ekonomi Kreatif</h4>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Untuk mahasiswa</h4>
               <p className="text-gray-600 leading-relaxed">
-                Mendorong inovasi pada sub-sektor kreatif untuk menciptakan nilai tambah dan daya saing produk lokal.
+                Bawa kompetensimu ke kasus nyata melalui riset, Solution Fellow, PKL, tugas akhir, atau skripsi.
               </p>
+              <Link href="/program#mahasiswa" className="inline-block mt-4 font-bold text-primary">Lihat peluang →</Link>
+            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <Handshake className="h-7 w-7 text-primary mb-6" />
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Untuk mitra</h4>
+              <p className="text-gray-600 leading-relaxed">Bangun program kolaboratif yang memperkuat UMKM sekaligus menghasilkan dampak yang terukur.</p>
+              <Link href="/mitra" className="inline-block mt-4 font-bold text-primary">Mulai kolaborasi →</Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <CollaborationPaths />
+      <BusinessExamples />
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center">
+          <h2 className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Dampak yang dapat dibuktikan</h2>
+          <h3 className="text-3xl font-extrabold mb-4">Bukan hanya selesai berkegiatan.</h3>
+          <p className="text-gray-600 mb-6">Perubahan ekonomi, pengetahuan, dan keberdayaan mitra dibaca dari kondisi awal, target, bukti perubahan, dan suara mitra.</p>
+          <Link href="/dampak" className="font-bold text-primary">Lihat kerangka dampak →</Link>
         </div>
       </section>
 
@@ -144,7 +165,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
             <div className="max-w-2xl space-y-4">
               <h2 className="text-sm font-bold text-primary uppercase tracking-widest">Informasi Terkini</h2>
-              <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">Kabar & Artikel</h3>
+              <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">Gagasan, kegiatan, dan hasil yang dibagikan.</h3>
+              <p className="text-gray-600">Ikuti perkembangan program melalui berita kegiatan, publikasi media, artikel ilmiah, panduan, dan sumber belajar.</p>
+              <Link href="/publikasi" className="inline-block font-bold text-primary">Jelajahi publikasi →</Link>
             </div>
             <Button asChild variant="outline" className="shrink-0 font-semibold group">
               <Link href="/berita">
@@ -255,6 +278,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <ConsultationCallout />
     </div>
   );
 }

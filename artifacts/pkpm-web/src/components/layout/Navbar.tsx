@@ -12,6 +12,7 @@ const navLinks = [
   { name: "UMKM", path: "/umkm" },
   { name: "Publikasi", path: "/publikasi" },
   { name: "Mitra", path: "/mitra" },
+  { name: "Dampak", path: "/dampak" },
   { name: "Galeri", path: "/galeri" },
   { name: "Kontak", path: "/kontak" },
 ];
@@ -27,22 +28,22 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
               <img
-                src="/logo-polinema.jpg"
+                src={`${import.meta.env.BASE_URL}logo-polinema.jpg`}
                 alt="Logo Polinema"
                 className="h-12 w-12 object-contain"
               />
               <div>
                 <h1 className="font-bold text-sm md:text-base leading-tight tracking-tight text-primary">
-                  Pusat Kajian Pemberdayaan Masyarakat
+                  Pusat Riset Pemberdayaan Masyarakat
                 </h1>
                 <p className="text-[10px] md:text-xs text-muted-foreground font-medium hidden sm:block">
-                  UMKM &amp; Ekonomi Kreatif Polinema
+                  dan UMKM · Politeknik Negeri Malang
                 </p>
               </div>
             </Link>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden xl:flex items-center gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -61,11 +62,11 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Button className="hidden md:flex bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold shadow-sm">
-              Dukung Kami
+            <Button asChild className="hidden md:flex bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold shadow-sm">
+              <Link href="/kontak">Konsultasi UMKM</Link>
             </Button>
             <button
-              className="lg:hidden p-2 text-foreground"
+              className="xl:hidden p-2 text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
             >
@@ -77,7 +78,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b bg-background absolute w-full pb-4 shadow-lg">
+        <div className="xl:hidden border-b bg-background absolute w-full pb-4 shadow-lg max-h-[calc(100dvh-5rem)] overflow-y-auto">
           <nav className="flex flex-col container mx-auto px-4">
             {navLinks.map((link) => (
               <Link
@@ -93,8 +94,8 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-6">
-              <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
-                Dukung Kami
+              <Button asChild className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
+                <Link href="/kontak" onClick={() => setMobileMenuOpen(false)}>Konsultasi UMKM</Link>
               </Button>
             </div>
           </nav>

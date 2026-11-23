@@ -10,19 +10,18 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-6">
               <img
-                src="/logo-polinema.jpg"
+                src={`${import.meta.env.BASE_URL}logo-polinema.jpg`}
                 alt="Logo Polinema"
                 className="h-14 w-14 object-contain"
               />
               <div>
                 <h2 className="font-bold text-base leading-snug tracking-tight text-white">
-                  Pusat Kajian Pemberdayaan Masyarakat/<br/>UMKM/Ekonomi Kreatif
+                  Pusat Riset Pemberdayaan Masyarakat<br/>dan UMKM
                 </h2>
               </div>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed max-w-sm">
-              Pusat Kajian Pemberdayaan Masyarakat, UMKM, dan Ekonomi Kreatif 
-              Politeknik Negeri Malang. Berdedikasi untuk memajukan potensi lokal melalui riset dan inovasi terapan.
+              Ruang temu bagi persoalan nyata, kepakaran lintas jurusan, fasilitas terapan, dan jejaring kolaborasi di Politeknik Negeri Malang.
             </p>
           </div>
 
@@ -34,17 +33,18 @@ export function Footer() {
               <li><Link href="/program" className="text-primary-foreground/80 hover:text-white transition-colors text-sm flex items-center gap-2">Program Kegiatan</Link></li>
               <li><Link href="/umkm" className="text-primary-foreground/80 hover:text-white transition-colors text-sm flex items-center gap-2">Direktori UMKM</Link></li>
               <li><Link href="/publikasi" className="text-primary-foreground/80 hover:text-white transition-colors text-sm flex items-center gap-2">Publikasi Riset</Link></li>
+              <li><Link href="/dampak" className="text-primary-foreground/80 hover:text-white transition-colors text-sm">Kerangka Dampak</Link></li>
+              <li><Link href="/galeri" className="text-primary-foreground/80 hover:text-white transition-colors text-sm">Galeri Kolaborasi</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-bold text-lg mb-6 text-white">Fokus Kajian</h3>
+            <h3 className="font-bold text-lg mb-6 text-white">Jalur Kolaborasi</h3>
             <ul className="space-y-3">
-              <li className="text-primary-foreground/80 text-sm">Pemberdayaan Masyarakat Lokal</li>
-              <li className="text-primary-foreground/80 text-sm">Pengembangan Kapasitas UMKM</li>
-              <li className="text-primary-foreground/80 text-sm">Inovasi Ekonomi Kreatif</li>
-              <li className="text-primary-foreground/80 text-sm">Digitalisasi Bisnis</li>
-              <li className="text-primary-foreground/80 text-sm">Riset Terapan Multidisiplin</li>
+              <li className="text-primary-foreground/80 text-sm">Klinik Diagnosis UMKM</li>
+              <li className="text-primary-foreground/80 text-sm">Riset Terapan Lintas Jurusan</li>
+              <li className="text-primary-foreground/80 text-sm">TEFA untuk UMKM</li>
+              <li className="text-primary-foreground/80 text-sm">Talenta Mahasiswa</li>
             </ul>
           </div>
 
@@ -53,22 +53,18 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-primary-foreground/80 text-sm">
                 <MapPin className="h-5 w-5 shrink-0 text-secondary" />
-                <span>Gedung Pusat Kajian Terapan, Kampus Utama Polinema, Jl. Soekarno Hatta No.9, Malang</span>
+                <span>Politeknik Negeri Malang</span>
               </li>
               <li className="flex items-center gap-3 text-primary-foreground/80 text-sm">
                 <Mail className="h-4 w-4 shrink-0 text-secondary" />
-                <span>pkpm@polinema.ac.id</span>
-              </li>
-              <li className="flex items-center gap-3 text-primary-foreground/80 text-sm">
-                <Phone className="h-4 w-4 shrink-0 text-secondary" />
-                <span>(0341) 404424</span>
+                <a href="mailto:pkpm@polinema.ac.id" className="hover:underline">pkpm@polinema.ac.id</a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
-          <p>© {new Date().getFullYear()} PKPM Polinema. Hak Cipta Dilindungi.</p>
+          <p>© {new Date().getFullYear()} Pusat Riset UMKM Polinema. Hak Cipta Dilindungi.</p>
           <div className="flex gap-6">
             <a href="https://polinema.ac.id" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Website Polinema</a>
           </div>

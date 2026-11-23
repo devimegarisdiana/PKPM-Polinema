@@ -4,6 +4,8 @@ import { Search, MapPin, Store, ArrowRight, Phone } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { BusinessExamples } from "@/components/ReferenceExamples";
+import { ConsultationCallout } from "@/components/ResearchContent";
 
 export default function UmkmList() {
   const { data: umkms, isLoading } = useListUmkm();
@@ -22,13 +24,14 @@ export default function UmkmList() {
           <div className="max-w-3xl">
             <h1 className="text-4xl font-extrabold mb-4">UMKM Binaan</h1>
             <p className="text-primary-foreground/80 text-lg">
-              Mengenal lebih dekat para pelaku usaha mikro, kecil, dan menengah yang telah berkembang bersama program pendampingan kami.
+              Setiap profil memperlihatkan kebutuhan utama, solusi yang sedang dikembangkan, bidang kolaborasi, dan perkembangan pendampingan.
             </p>
           </div>
         </div>
       </section>
 
       <section className="py-12 container mx-auto px-4 md:px-6">
+        <h2 className="text-2xl font-extrabold mb-6">Direktori UMKM terdaftar</h2>
         <div className="flex justify-between items-center mb-10">
           <div className="relative w-full max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -41,6 +44,7 @@ export default function UmkmList() {
           </div>
         </div>
 
+        {!isLoading && filtered?.length === 0 && <p className="text-gray-600 mb-6">Belum ada profil terdaftar yang sesuai pencarian.</p>}
         {isLoading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1,2,3,4,5,6,7,8].map(i => <div key={i} className="h-64 bg-white rounded-2xl animate-pulse"></div>)}
@@ -78,6 +82,8 @@ export default function UmkmList() {
           </div>
         )}
       </section>
+      <BusinessExamples search={searchTerm} />
+      <ConsultationCallout />
     </div>
   );
 }

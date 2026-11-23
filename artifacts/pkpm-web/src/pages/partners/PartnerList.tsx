@@ -1,5 +1,7 @@
 import { useListPartners } from "@workspace/api-client-react";
 import { Handshake, Globe, MapPin } from "lucide-react";
+import { partnerRoles } from "@/content/research";
+import { ConsultationCallout } from "@/components/ResearchContent";
 const partnerImg = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80";
 
 export default function PartnerList() {
@@ -23,15 +25,22 @@ export default function PartnerList() {
         />
         <div className="container mx-auto px-4 md:px-6 relative z-20">
           <div className="max-w-2xl text-white">
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Mitra Strategis</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Kolaborasi yang memperluas manfaat.</h1>
             <p className="text-lg text-white/90">
-              Kolaborasi lintas sektor (pentahelix) untuk menciptakan ekosistem pemberdayaan yang berdampak luas dan berkelanjutan.
+              Kami membuka ruang kerja bersama bagi pemerintah, industri, komunitas, lembaga keuangan, media, alumni, dan organisasi yang memiliki kepedulian terhadap pemberdayaan masyarakat dan UMKM.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="py-16 container mx-auto px-4 md:px-6 -mt-16 relative z-30">
+      <section className="py-16 container mx-auto px-4 md:px-6">
+        <h2 className="text-3xl font-extrabold mb-4">Peran yang dapat saling melengkapi.</h2>
+        <p className="text-gray-600 mb-8">Setiap mitra dapat berkontribusi melalui data, kepakaran, fasilitas, pendanaan, akses pasar, publikasi, maupun pendampingan.</p>
+        <div className="grid md:grid-cols-3 gap-6">{partnerRoles.map(role => <article key={role.title} className="bg-white rounded-2xl border p-6"><h3 className="font-bold text-xl mb-3">{role.title}</h3><p className="text-gray-600">{role.description}</p></article>)}</div>
+      </section>
+      <section className="pb-16 container mx-auto px-4 md:px-6 relative z-30">
+        <h2 className="text-2xl font-extrabold mb-6">Mitra resmi</h2>
+        {!isLoading && partners?.length === 0 && <p className="text-gray-600">Identitas mitra resmi akan ditampilkan setelah kerja sama disepakati.</p>}
         {isLoading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1,2,3,4,5,6].map(i => <div key={i} className="h-40 bg-white rounded-2xl animate-pulse shadow-sm"></div>)}
@@ -81,6 +90,7 @@ export default function PartnerList() {
           </div>
         )}
       </section>
+      <ConsultationCallout />
     </div>
   );
 }
